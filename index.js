@@ -24,17 +24,17 @@ var corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'] 
 }
 
-app.get('/', async (req, res) => {    
+app.get('/', (req, res) => {    
     res.json({articles: "unauthorized"});
 });
 
-app.get('/api', async (req, res) => {    
+app.get('/api', (req, res) => {    
     res.json({articles: "unauthorized api"});
 });
 
-app.use(cors(corsOptions))
+//app.use(cors(corsOptions))
 
-app.use(auth);
+//app.use(auth);
 
 app.use('/api/articles',articleRoutes);
 
