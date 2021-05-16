@@ -4,6 +4,8 @@ const dotenv = require('dotenv').config();
 const app = express();
 const Article =  require('./models/article.js');
 const articleRoutes = require('./routes/articles.js')
+const auth = require('./auth.js');
+const cors = require('cors');
 
 mongoose 
  .connect(process.env.MONGO_PROD_URI, {
@@ -15,25 +17,15 @@ mongoose
  .then(() => console.log("Database connected!"))
  .catch(err => console.log(err));
 
-<<<<<<< HEAD
 var corsOptions = {
   origin: '*',
   methods: ['GET'],
   optionsSuccessStatus: 200,
   allowedHeaders: ['Content-Type', 'Authorization'] 
 }
+app.use(cors(corsOptions))
 
-app.get('/', (req, res) => {    
-    res.json({articles: "unauthorized"});
-});
-
-app.get('/api', (req, res) => {    
-    res.json({articles: "unauthorized api"});
-});
-
-//app.use(cors(corsOptions))
-
-//app.use(auth);
+app.use(auth);
 
 app.use('/api/articles',articleRoutes);
 
