@@ -39,4 +39,4 @@ app.get('/api', (req, res) => {
 app.use('/api/articles',articleRoutes);
 
 
-app.listen(6400, ()=>{console.log("Server initiated....")});
+app.listen(process.env.PORT || 6400, ()=>{console.log("Server initiated....")});
