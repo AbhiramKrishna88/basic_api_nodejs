@@ -23,9 +23,18 @@ var corsOptions = {
   optionsSuccessStatus: 200,
   allowedHeaders: ['Content-Type', 'Authorization'] 
 }
-app.use(cors(corsOptions))
 
-app.use(auth);
+app.get('/', (req, res) => {    
+    res.json({articles: "unauthorized"});
+});
+
+app.get('/api', (req, res) => {    
+    res.json({articles: "unauthorized api"});
+});
+
+//app.use(cors(corsOptions))
+
+//app.use(auth);
 
 app.use('/api/articles',articleRoutes);
 
